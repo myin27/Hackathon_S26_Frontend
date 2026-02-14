@@ -29,10 +29,13 @@
 
             <br></br>
 
-            <img id="preview" width="300">
-
         </div>
         
+
+    <div style="display: flex; justify-content: center; gap: 20px;">
+
+        <img id="preview" width="300" style="display: none;">
+
         <table class="data-table">
             <thead>
                 <tr>
@@ -49,25 +52,18 @@
                     <td>$3.00</td>
                     <td>Yes</td>
                     <td><button class="delete-button">Delete</button></td>
+                </tr>
+                <tr>
+                    <td>Milk</td>
+                    <td>$3.00</td>
+                    <td>Yes</td>
+                    <td><button class="delete-button">Delete</button></td>
+                </tr>
             </tbody>
         </table>
     </div>
 
-    <script>
-        const input = document.getElementById("fileUpload");
-        const preview = document.getElementById("preview");
-    
-        input.addEventListener("change", function() {
-            const file = this.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.addEventListener("load", function() {
-                    preview.src = this.result;
-                });
-                reader.readAsDataURL(file);
-            }
-        });
-    </script>
+    <script src="script.js"></script>
 
 </body>
 
