@@ -78,41 +78,63 @@ function toRows(apiResponse) {
 function renderTable() {
   tbody.innerHTML = "";
 
-  rows.forEach(row => {
+  rows.forEach((row) => {
     const tr = document.createElement("tr");
 
     if (!row.editing) {
       tr.innerHTML = `
         <td>${escapeHtml(row.itemName)}</td>
-        <td>$${row.price.toFixed(2)}</td>
-        <td>${row.confidence.toFixed(2)}</td>
-        <td>${row.perishable}</td>
-        <td><button class="edit-btn" data-id="${row.id}">Edit</button></td>
+        <td class="num">$${row.price.toFixed(2)}</td>
+        <td>
+          <div class="conf">
+            <div class="conf-bar">
+              <div class="conf-fill" style="width:${Math.round(row.confidence * 100)}%"></div>
+            </div>
+            <div class="conf-num">${row.confidence.toFixed(2)}</div>
+          </div>
+        </td>
+        <td>
+          <span class="pill ${row.perishable === "Yes" ? "yes" : "no"}">${row.perishable}</span>
+        </td>
+        <td>
+          <div class="btn-row">
+            <button class="btn primary edit-btn" data-id="${row.id}">Edit</button>
+          </div>
+        </td>
       `;
     } else {
       tr.innerHTML = `
         <td>
-          <input class="cell-input" data-field="itemName" data-id="${row.id}" value="${escapeAttr(row.itemName)}">
+          <input class="cell-input" data-field="itemName" data-id="${row.id}"
+                 value="${escapeAttr(row.itemName)}">
           <div style="font-size:12px;opacity:.75;margin-top:4px;">
             Original: ${escapeHtml(row.original)}
           </div>
         </td>
+
         <td>
-          <input class="cell-input" data-field="price" data-id="${row.id}" value="${row.price}">
+          <input class="cell-input" data-field="price" data-id="${row.id}"
+                 value="${row.price}">
         </td>
+
         <td>
-          <input class="cell-input" data-field="confidence" data-id="${row.id}" value="${row.confidence}">
+          <input class="cell-input" data-field="confidence" data-id="${row.id}"
+                 value="${row.confidence}">
         </td>
+
         <td>
           <select data-field="perishable" data-id="${row.id}">
             <option value="Yes" ${row.perishable === "Yes" ? "selected" : ""}>Yes</option>
             <option value="No" ${row.perishable === "No" ? "selected" : ""}>No</option>
           </select>
         </td>
+
         <td>
-          <button class="save-btn" data-id="${row.id}">Save</button>
-          <button class="remove-btn" data-id="${row.id}">Remove</button>
-          <button class="cancel-btn" data-id="${row.id}">Cancel</button>
+          <div class="btn-row">
+            <button class="btn primary save-btn" data-id="${row.id}">Save</button>
+            <button class="btn danger remove-btn" data-id="${row.id}">Remove</button>
+            <button class="btn cancel-btn" data-id="${row.id}">Cancel</button>
+          </div>
         </td>
       `;
     }
@@ -120,6 +142,7 @@ function renderTable() {
     tbody.appendChild(tr);
   });
 }
+
 
 // Event delegation for Edit/Save/Remove/Cancel
 document.addEventListener("click", (e) => {
