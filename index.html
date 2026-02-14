@@ -13,12 +13,13 @@
     <div class="container">
         <h1 class="title">Scan2Serve</h1>
         
-        <div class="box-container" style="display: flex; justify-content: center; gap: 20px;">
+        <div class="box-container" style="display: flex; justify-content: center; align-content: center; gap: 20px;">
             <div class="box">
                 <button class="nav-button" onclick="window.location.href='index.html'">
                     Ingredients
                 </button>
             </div>
+
             <div class="box">
                 <button class="nav-button" onclick="window.location.href='recipes.html'">
                     Recipes
@@ -26,16 +27,20 @@
             </div>
             <!-- <div class="box">Streak</div> -->
         </div>
+    
         
-        <div class="upload-section" style="display: flex; justify-content: center; gap: 20px;">
-            <p>Upload Your Receipt Here!</p>
-            <input type="file" id="fileUpload" accept="image/*">
-
-            <br></br>
-
+        <div style="display: flex; justify-content: center; gap: 20px;">
+            <div class="upload-section" style="display: flex; justify-content: center; gap: 20px;">
+                <p>Upload Your Receipt Here!</p>
+                <input type="file" id="fileUpload" accept="image/*">
+    
+                <!-- <br></br> -->
+    
+            </div>
         </div>
     <!-- This element is the preview result container for the JSON response   -->
     <pre id="result" styleo="white-space: pre-wrap; max-width: 600px;"></pre>
+        
 
     <div class="container2" style="display: flex; justify-content: center; gap: 20px;">
 
