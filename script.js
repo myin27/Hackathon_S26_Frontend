@@ -1,3 +1,6 @@
+import { savePantryFromRows } from "./pantryStore.js";
+
+
 const input = document.getElementById("fileUpload");
 const preview = document.getElementById("preview");
 const resultEl = document.getElementById("result");
@@ -48,9 +51,10 @@ input.addEventListener("change", async () => {
       throw new Error(data?.message || `Request failed (${res.status})`);
     }
 
-    // ✅ Convert API response -> table rows
+    // ✅ Convert API response -> table rows -> save to "pantry" (localStorage)
     rows = toRows(data);
     renderTable();
+    savePantryFromRows(rows);
 
   } catch (err) {
     console.error(err);
@@ -199,6 +203,7 @@ function saveEdit(id) {
   });
 
   renderTable();
+  savePantryFromRows(rows);
 }
 
 function cancelEdit(id) {
@@ -219,7 +224,9 @@ function cancelEdit(id) {
 function removeRow(id) {
   rows = rows.filter(r => r.id !== id);
   renderTable();
+  savePantryFromRows(rows);
 }
+
 
 // Helpers
 function fileToBase64(file) {

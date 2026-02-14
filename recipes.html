@@ -1,49 +1,98 @@
-<!-- recipes.html -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recipes</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Scan2Serve — Recipes</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-    <div class="container">
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
         <h1 class="title">Scan2Serve</h1>
+        <p class="subtitle">Turn your pantry into recipe ideas</p>
+      </div>
+
+      <nav class="nav">
+        <a class="nav-button" href="index.html">Ingredients</a>
+        <a class="nav-button is-active" href="recipes.html">Recipes</a>
+      </nav>
+    </header>
+
+    <main class="grid">
+      <!-- LEFT: Pantry summary (from localStorage) -->
+      <section class="card table-card">
+        <div class="table-head">
+          <div>
+            <div class="card-title">Saved pantry</div>
+            <div class="hint">Loaded from local storage. Add/edit items here too.</div>
+          </div>
         
-        <div class="box-container" style="display: flex; justify-content: center; gap: 20px;">
-            <div class="box">
-                <button class="nav-button" onclick="window.location.href='index.html'">Ingredients</button>
-            </div>
-            <div class="box">
-                <button class="nav-button" onclick="window.location.href='recipes.html'">Recipes</button>
-            </div>
-            <!-- <div class="box">Streak</div> -->
+          <div class="pill" id="pantryCount">0 items</div>
         </div>
 
-        <table class="data-table">
+        <div class="add-row" style="display:flex; gap:10px; flex-wrap:wrap; margin: 10px 0 12px;">
+          <input id="newItemName" class="cell-input" style="max-width: 320px;" placeholder="Add an item (e.g., Greek yogurt)" />
+          <select id="newItemPerishable" style="max-width: 160px;">
+            <option value="Yes">Perishable</option>
+            <option value="No">Non-perishable</option>
+          </select>
+          <button class="btn primary" id="addItemBtn" type="button">Add</button>
+        </div>
+
+
+        <div class="table-wrap">
+          <table class="data-table" id="pantryTable">
             <thead>
-                <tr>
-                    <th>Ingredients Required:</th>
-                    <th>Recipe Link</th>
-                    <th style="width: 200px">Recipe Made?</th>
-                </tr>
+              <tr>
+                <th>Item</th>
+                <th style="width: 140px">Perishable</th>
+                <th style="width: 200px">Actions</th>
+              </tr>
+
             </thead>
             <tbody>
-                <!-- Rows will be dynamically added here -->
-                <tr>
-                    <td>Milk, Eggs, Cheese</td>
-                    <td>
-                        <a href="https://www.google.com">Recipe Name</a>
-                    </td>
-                    <td>
-                        <input type="checkbox" id="recipeMade1" name="recipeMade1">
-                    </td>
+              <!-- filled by recipes.js -->
             </tbody>
-        </table>
-    </div>
+          </table>
+        </div>
 
+        <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
+          <button class="btn danger" id="clearPantryBtn">Clear pantry</button>
+          <button class="btn" id="exportPantryBtn">Export JSON</button>
+        </div>
+      </section>
 
+      <!-- RIGHT: Chat mock (layout only for now) -->
+      <section class="card preview-card">
+        <div class="card-title">Recipe chat (coming next)</div>
+        <div class="hint" style="margin-bottom:10px;">
+          We’ll plug Bedrock in here last. For now it’s just UI.
+        </div>
+
+        <div class="chat">
+          <div class="chat-bubble bot">
+            Hi! What would you like to make today?
+          </div>
+          <div class="chat-bubble user">
+            Something with yogurt and granola.
+          </div>
+          <div class="chat-bubble bot">
+            Cool — any other constraints (high protein, vegetarian, etc.)?
+          </div>
+        </div>
+
+        <div class="chat-input">
+          <input id="chatText" type="text" placeholder="Type a message…" />
+          <button class="btn primary" id="chatSend">Send</button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- IMPORTANT: module script so we can import pantryStore -->
+  <script type="module" src="recipes.js"></script>
 </body>
+</html>
