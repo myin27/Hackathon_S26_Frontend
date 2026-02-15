@@ -1,6 +1,6 @@
 # Scan2Serve
 
-<img src="images/screenshot.png" width="400px">
+<img src="logo.png" width="400px">
 
 Too often we find ourselves with just a handful of ingredients we forgot about in our fridge and on the verge of going bad but having no idea what to do with them. 
 Do we go out and buy more ingredients so we can add our existing ingredients to the mix? 
