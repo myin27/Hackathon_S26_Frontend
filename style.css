@@ -433,3 +433,68 @@ body{
   .recipes-grid{ grid-template-columns: 1fr; }
   .add-row{ grid-template-columns: 1fr; }
 }
+
+/* ===== Pantry row sizing tweaks ===== */
+
+/* Let name input take maximum available space */
+#pantryTableBody td:first-child .cell-input {
+  width: 100%;
+  min-width: 0;        /* allow shrinking */
+  max-width: 100%;
+}
+
+/* Shrink perishable dropdown */
+#pantryTableBody select.cell-input {
+  max-width: 95px;
+  padding: 6px 8px;
+  font-size: 0.9rem;
+}
+
+/* ===== Edit Dropdown ===== */
+
+.edit-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.edit-toggle {
+  padding: 6px 10px;
+  font-size: 0.9rem;
+}
+
+.edit-menu {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 110%;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 8px 18px rgba(0,0,0,.08);
+  padding: 6px;
+  min-width: 100px;
+  z-index: 10;
+}
+
+.edit-dropdown:hover .edit-menu {
+  display: block;
+}
+
+.dropdown-item {
+  width: 100%;
+  border: none;
+  background: transparent;
+  padding: 8px;
+  text-align: left;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.dropdown-item:hover {
+  background: var(--accent-2);
+}
+
+.dropdown-item.danger:hover {
+  background: rgba(200,0,0,.1);
+}

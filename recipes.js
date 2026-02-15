@@ -42,11 +42,22 @@ function renderPantry() {
         </select>
       </td>
       <td>
-        <div class="btn-row">
-          <button class="btn primary" data-action="save" data-idx="${idx}">Save</button>
-          <button class="btn danger" data-action="delete" data-idx="${idx}">Delete</button>
-        </div>
-      </td>
+  <div class="edit-dropdown">
+    <button class="btn primary edit-toggle">
+      Edit ▾
+    </button>
+
+    <div class="edit-menu">
+      <button class="dropdown-item" data-action="save" data-idx="${idx}">
+        Save
+      </button>
+      <button class="dropdown-item danger" data-action="delete" data-idx="${idx}">
+        Delete
+      </button>
+    </div>
+  </div>
+</td>
+
     `;
 
     pantryBody.appendChild(tr);
